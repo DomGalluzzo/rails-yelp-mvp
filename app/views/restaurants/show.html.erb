@@ -1,2 +1,27 @@
-<h1>Restaurants#show</h1>
-<p>Find me in app/views/restaurants/show.html.erb</p>
+<div class="d-flex container-fluid">
+  <div class="col-md-12 col-lg-6">
+    <ul class="list-group">
+        <li class="list-group-item font-weight-bold"><%= @restaurant.name %></li>
+        <li class="list-group-item text-style-italic"><em>Category:</em> <%= @restaurant.category %></li>
+        <li class="list-group-item"><em>Address:</em> <%= @restaurant.address %></li>
+        <li class="list-group-item"><em>Phone Number:</em> <%= @restaurant.phone_number %></li>
+    </ul>
+  </div>
+
+  <div class="col-md-12 col-lg-6">
+    <p class="h3">Reviews</p>
+    <ul class="list-group">
+      <% iterator = 1 %>
+      <% @restaurant.reviews.each do |review| %>
+        <h6> Review #<%= iterator %></h3>
+        <li class="list-group-item">Stars: <%= review.rating %></li>
+        <li class="list-group-item"><%= review.content %></li>
+        <% iterator += 1 %>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<%= link_to "Home", restaurants_path, class: "btn btn-primary mt-3 ml-4" %>
+
+<%= link_to "New Review", new_restaurant_review_path(@restaurant), class: "btn btn-primary mt-3 ml-4" %>
